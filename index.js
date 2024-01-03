@@ -15,7 +15,13 @@ process.on("uncaughtException",(err)=>{
 })
 
 app.use(express.json());
-app.use(cors());
+const corsOptions = {
+    origin: `http://localhost:${process.env.port}`, 
+    optionsSuccessStatus: 200,
+  };
+  
+  app.use(cors(corsOptions));
+  
 app.get('/',async(req,res)=>{
     res.send({msg:"server is deployed"})
 })
