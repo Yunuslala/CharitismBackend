@@ -7,7 +7,7 @@ module.exports = {
     const saveTask=new TodoModel({UserId,Task});
     await saveTask.save();
     return res.status(201).send({
-        sucess:true,
+        success:true,
         msg:"task has been created by user"
     })
   }),
@@ -17,7 +17,7 @@ module.exports = {
         return next(new ErrorHandler(404,"Todo lists does not exist"))
     }
     return res.status(200).send({
-        sucess:true,
+        success:true,
         data:getAllTodo
     })
 
@@ -33,14 +33,14 @@ module.exports = {
         if(!checkAUthorization){
         return next(new ErrorHandler(400,"you are not authorized to update this task status"))
 
-        }else{
+        }
             const updateStatus=await TodoModel.findByIdAndUpdate({_id:id},{status:true},{new:true});
             return res.status(201).send({
-                sucess:true,
+                success:true,
                 msg:"task has been updated",
                 data:updateStatus
             })
-        }
+        
     }
 
 
@@ -57,13 +57,13 @@ module.exports = {
         if(!checkAUthorization){
         return next(new ErrorHandler(400,"you are not authorized to delete this task "))
 
-        }else{
+        }
             const updateStatus=await TodoModel.findByIdAndDelete({_id:id},{status:true},{new:true});
             return res.status(201).send({
-                sucess:true,
+                success:true,
                 msg:"task status has been deleted"
             })
-        }
+        
     }
 
 
