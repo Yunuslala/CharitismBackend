@@ -13,9 +13,14 @@ process.on("uncaughtException",(err)=>{
     console.log("shutting down server due to Uncaught Exception");
     process.exit(1);
 })
-// app.use(express.static('public'));
+
 app.use(express.json());
 app.use(cors());
+app.get('/',async(req,res)=>{
+    res.status("server is deployed")
+})
+
+
 app.use('/api/v1',UserRouter);
 app.use('/api/v1',TodoRouter);
 
