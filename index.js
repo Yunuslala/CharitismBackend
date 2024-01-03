@@ -6,7 +6,7 @@ const morgan = require('morgan');
 const errorMiddleware=require("./middleware/Error");
 const app=express();
 const cors=require("cors");
-
+const helmet=require("helmet");
 
 process.on("uncaughtException",(err)=>{
     console.log(`Error: ${err.message}`)
@@ -16,6 +16,7 @@ process.on("uncaughtException",(err)=>{
 
 app.use(express.json());
 app.use(morgan('dev'));
+app.use(helmet())
 const rateLimit = require('express-rate-limit');
 
 const limiter = rateLimit({
