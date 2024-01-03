@@ -17,7 +17,7 @@ process.on("uncaughtException",(err)=>{
 app.use(express.json());
 app.use(cors());
 app.get('/',async(req,res)=>{
-    res.send("server is deployed")
+    res.send({msg:"server is deployed"})
 })
 
 
