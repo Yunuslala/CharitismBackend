@@ -2,7 +2,7 @@ const express=require('express');
 const { connection } = require('./config/db');
 const {UserRouter}=require("./routers/UserRouter");
 const {TodoRouter}=require("./routers/TodoRouter");
-
+const morgan = require('morgan');
 const errorMiddleware=require("./middleware/Error");
 const app=express();
 const cors=require("cors");
@@ -15,7 +15,7 @@ process.on("uncaughtException",(err)=>{
 })
 
 app.use(express.json());
-
+app.use(morgan('dev'));
 const rateLimit = require('express-rate-limit');
 
 const limiter = rateLimit({
